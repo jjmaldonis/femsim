@@ -1,0 +1,4 @@
+#parameter file opened. set a filename to # to ignore it
+/export/home/group/femsim/fem_exp.txt
+1 40 20 	 !# of rotations(nphi, npsi, ntheta)
+0.0305  !Q (inverse angstrom)

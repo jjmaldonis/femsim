@@ -741,6 +741,11 @@ contains
         call hutch_position(m, px-diameter/2.0, py-diameter/2.0, 0.0, i_start, j_start, trash)
         call hutch_position(m, px+diameter/2.0, py+diameter/2.0, 0.0, i_end, j_end, trash)
         nh = (i_end-i_start+1)*(j_end-j_start+1)*(m%ha%nhutch_z)
+
+        if(i_start > m%ha%nhutch_x) i_start = m%ha%nhutch_x
+        if(i_end > m%ha%nhutch_x) i_end = m%ha%nhutch_x
+        if(j_start > m%ha%nhutch_y) j_start = m%ha%nhutch_y
+        if(j_end > m%ha%nhutch_y) j_end = m%ha%nhutch_y
         
         ! Fill in the list.
         nlist = 1

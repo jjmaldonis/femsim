@@ -168,6 +168,7 @@ contains
     end subroutine init_rot
 
 
+
     subroutine init_pix(m, res, istat, square_pixel)
         type(model), intent(in) :: m
         real, intent(in) :: res ! Pixel width.
@@ -187,7 +188,9 @@ contains
         else
             pa%phys_diam = res
         endif
-        pa%npix_1D = floor( m%lx / pa%phys_diam )
+        ! Addition is for rounding error
+        pa%npix_1D = floor( (m%lx+0.000001) / pa%phys_diam )
+        !if(pa%npix_1D .eq. 0) pa%npix_1D = 1
         pa%npix = pa%npix_1D**2
 
         pa%dr = m%lx/pa%npix_1D - pa%phys_diam
@@ -206,6 +209,8 @@ contains
                 k = k + 1
             enddo
         enddo
+
+        !write(*,*) "INIT PIX", res, m%lx, pa%npix_1D,pa%npix,pa%dr,pa%phys_diam
 
         ! Uncomment below lines if you want to see pixel information.
         !if(myid.eq.0)then
